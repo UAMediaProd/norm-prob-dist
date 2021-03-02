@@ -4,12 +4,13 @@
     <title>Normal Probability Distribution Graph Interactive</title>
     <meta name="description"
         content="You can explore how the normal curve and the z-table are related in this JSXGraph applet.">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=AM_HTMLorMML" id=""></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=AM_HTMLorMML" id=""></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 </head>
 <link rel="stylesheet" href="./css/app.css" type="text/css">
 
 <body>
+<div class="contain">
     <div
         style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;">
         <div id="MathJax_Hidden"></div>
@@ -66,6 +67,7 @@
                 <p><span id="probOutput" class="intmath" style="display: none;"></span></p>
             </div>
         </form>
+    </div>
     </div>
     <script type="text/javascript" src="./js/jsxgraphcore.js"></script>
     <script type="text/javascript">
@@ -144,8 +146,10 @@
                     needsRegularUpdate: false
                 });
 
+                // LRD4 – Change these values for the bell curve style. Can add/change attributes like strokeWidth; strokeColor; etc.
                 var bellCurve = board.create("functiongraph", [bell, -20, 20], {
-                    strokeWidth: 1,
+                    strokeWidth: 2,
+                    strokeColor: "#ff00ff",
                     highlight: false,
                     dash: 0
                 });
@@ -154,10 +158,16 @@
                         visible: false,
                         name: ''
                     });
+
+                    // LRD3 - Change these values to alter the styling of the bell curve points
                     bellArr[i] = board.create("point", [i * sigma + mu, bell(i * sigma + mu)], {
                         visible: true,
-                        name: ''
+                        name: '',
+                        fillColor: "blue",
+                        strokeColor: "blue"
                     });
+
+                    // LRD1 – Change these values to style the dashed vertical lines under the bell curve 
                     segArr[i] = board.create("segment", [ptArr[i], bellArr[i]], {
                         strokeWidth: 1,
                         dash: 2,
@@ -165,6 +175,8 @@
                         fixed: true
                     });
                 }
+
+                // LRD5 - Bottom slider styling 
                 var line0 = board.create('line', [
                     [0, -0.1],
                     [1, -0.1]
@@ -175,13 +187,21 @@
                     highlight: false,
                     fixed: true
                 });
+                    //left slider handle
                 var glid_x1 = board.create('glider', [3, -0.1, line0], {
                     name: '<i>x</i><sub>1</sub>',
-                    showInfobox: false
+                    showInfobox: false,
+                    fillColor: "blue",
+                    strokeColor: "blue"
                 });
+
+                    //right slider handle
                 var glid_x2 = board.create('glider', [5.5, -0.1, line0], {
                     name: '<i>x</i><sub>2</sub>',
-                    showInfobox: false
+                    showInfobox: false,
+                    fillColor: "green",
+                    strokeColor: "green"
+
                 });
 
                 showProbs = function () {
@@ -328,11 +348,14 @@
                     highlight: false
                 });
                 var xData, yData;
+
+                // LRD2 – LRD NOTE: Change these values to change the colour of the highlighted area under the curve!
                 var area = board.create('curve', [
                     [],
                     []
                 ], {
                     color: 'green',
+                    strokeWidth: 2,
                     opacity: 0.3,
                     highlightStrokeColorOpacity: 0.3
                 });

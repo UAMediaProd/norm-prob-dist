@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
 .MathJax_Hover_Frame {
   border-radius: 0.25em;
   -webkit-border-radius: 0.25em;
@@ -205,10 +211,11 @@
 .MathJax_MenuClose:hover:focus {
   outline: none;
 }
-</style > <style type="text/css" > .MathJax_Preview .MJXf-math {
+.MathJax_Preview .MJXf-math {
   color: inherit !important;
 }
-</style > <style type="text/css" > .MJX_Assistive_MathML {
+
+.MJX_Assistive_MathML {
   position: absolute !important;
   top: 0;
   left: 0;
@@ -229,7 +236,7 @@
 .MJX_Assistive_MathML.MJX_Assistive_MathML_Block {
   width: 100% !important;
 }
-</style > <style type="text/css" > #MathJax_Zoom {
+ #MathJax_Zoom {
   position: absolute;
   background-color: #f0f0f0;
   overflow: auto;
@@ -292,7 +299,7 @@
   opacity: 0;
   filter: alpha(opacity=0);
 }
-</style > <style type="text/css" > .MathJax_Preview {
+.MathJax_Preview {
   color: #888;
 }
 #MathJax_Message {
@@ -323,7 +330,7 @@
   color: #cc0000;
   font-style: italic;
 }
-</style > <style type="text/css" > .MJXp-script {
+.MJXp-script {
   font-size: 0.8em;
 }
 .MJXp-right {
@@ -549,7 +556,7 @@
   -o-transform: scaleX(0.9);
   transform: scaleX(0.9);
 }
-</style > <style type="text/css" > .MathJax_Display {
+.MathJax_Display {
   text-align: center;
   margin: 1em 0em;
   position: relative;
