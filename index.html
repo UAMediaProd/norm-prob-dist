@@ -105,8 +105,8 @@
                     [0, 0],
                     [1, 0]
                 ], {
-                    strokecolor: "#444",
-                    strokeWidth: 1,
+                    strokecolor: "#102535",
+                    strokeWidth: 2,
                     highlight: false,
                     fixed: true
                 });
@@ -125,9 +125,9 @@
                     [0, 0],
                     [0, 10]
                 ], {
-                    strokecolor: "#444",
+                    strokecolor: "#102535",
                     highlight: false,
-                    strokeWidth: 1,
+                    strokeWidth: 2,
                     fixed: true
                 });
                 var yticks;
@@ -146,8 +146,8 @@
 
                 // LRD4 – Change these values for the bell curve style. Can add/change attributes like strokeWidth; strokeColor; etc.
                 var bellCurve = board.create("functiongraph", [bell, -20, 20], {
-                    strokeWidth: 2,
-                    strokeColor: "#ff00ff",
+                    strokeWidth: 3,
+                    strokeColor: "#529CEE",
                     highlight: false,
                     dash: 0
                 });
@@ -161,15 +161,15 @@
                     bellArr[i] = board.create("point", [i * sigma + mu, bell(i * sigma + mu)], {
                         visible: false,
                         name: '',
-                        fillColor: "blue",
-                        strokeColor: "blue"
+                        fillColor: "#005A9C",
+                        strokeColor: "#005A9C"
                     });
 
                     // LRD1 – Change these values to style the dashed vertical lines under the bell curve 
                     segArr[i] = board.create("segment", [ptArr[i], bellArr[i]], {
-                        strokeWidth: 1,
+                        strokeWidth: 2,
                         dash: 2,
-                        color: "green",
+                        color: "#529CEE",
                         fixed: true
                     });
                 }
@@ -179,8 +179,8 @@
                     [0, -0.1],
                     [1, -0.1]
                 ], {
-                    strokeWidth: 1,
-                    strokeOpacity: .2,
+                    strokeWidth: 2,
+                    strokeOpacity: 1,
                     strokeColor: '#000',
                     highlight: false,
                     fixed: true
@@ -189,16 +189,20 @@
                 var glid_x1 = board.create('glider', [3, -0.1, line0], {
                     name: '<i>x</i><sub>1</sub>',
                     showInfobox: false,
-                    fillColor: "blue",
-                    strokeColor: "blue"
+                    fillColor: "#005A9C",
+                    strokeColor: "white",
+                    strokeWidth: 5,
+                    size: 6,
                 });
 
                     //right slider handle
                 var glid_x2 = board.create('glider', [5.5, -0.1, line0], {
                     name: '<i>x</i><sub>2</sub>',
                     showInfobox: false,
-                    fillColor: "green",
-                    strokeColor: "green"
+                    fillColor: "#005A9C",
+                    strokeColor: "white",
+                    strokeWidth: 5,
+                    size: 6,
 
                 });
 
@@ -236,6 +240,7 @@
                     [0, 0.5],
                     [1, 0.5]
                 ], {
+                    //LRD6 - Change these values to alter the styling of the line the red dots are on at the top of the graph
                     strokeWidth: 1,
                     strokeOpacity: .2,
                     strokeColor: '#000',
@@ -352,7 +357,7 @@
                     [],
                     []
                 ], {
-                    color: 'green',
+                    color: '#22B0E1',
                     strokeWidth: 2,
                     opacity: 0.3,
                     highlightStrokeColorOpacity: 0.3
