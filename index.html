@@ -32,8 +32,11 @@
                         for="sncurve">Show standard normal curve</label>
                     <input type="checkbox" name="checkboxname" value="sdgraph" id="sdgraph" checked="checked"> <label
                         for="sdgraph">Show standard deviations</label></p>
-                <p id="musig"><span id="muOutput" class="intmath">μ = mean = 4.0000 σ = standard deviation =
-                        1.5000</span> <span id="sigmaOutput" class="intmath"></span></p>
+                <p id="musig"><span id="muOutput" class="intmath">
+                    &mu; = mean = <input id='muX_box' type='number' value=4.0000 step="0.1">    &sigma; = standard deviation = <input id='sig_box' type='number' value=1.5000 step="0.1">
+
+
+                    </span> <span id="sigmaOutput" class="intmath"></span></p>
                 <p class="check2"><input type="checkbox" name="checkboxname" value="zscorecalc" id="zscorecalc"> <label
                         for="zscorecalc">Show <span class="MathJax_Preview"
                             style="color: inherit; display: none;"></span><span class="MathJax"
@@ -261,15 +264,64 @@
                 z1Score = ("#z1ScoreCalc");
                 z2Score = ("#z1ScoreCalc");
 
+                var muBox = $("#muX_box");
+                var sigmaBox = $("#sig_box");
+
+
+                updateGlider = function(type, val) {
+                    if (type == "mu") {
+                        mu = val;
+                        glid_mu.moveTo([mu, 0]);
+                        glid_sig.moveTo([val + sigma, 0], 0);
+                        for (var i = -3; i < 4; i++) {
+                            ptArr[i].moveTo([i * sigma + mu, 0]);
+                            bellArr[i].moveTo([i * sigma + mu, bell(i * sigma + mu)]);
+                        }
+                        showMuSig();
+                        showZscoreCalc();
+                        showProbs();
+
+                    } else {
+
+                        glid_sig.moveTo([mu + val, 0], 0);
+
+                        if (glid_sig.X() - glid_mu.X() > 0.2) {
+
+                            sigma = Math.abs(glid_sig.X() - glid_mu.X());
+                            for (var i = -3; i < 4; i++) {
+                                ptArr[i].moveTo([i * sigma + mu, 0]);
+                                bellArr[i].moveTo([i * sigma + mu, bell(i * sigma + mu)]);
+                            }
+                            showMuSig();
+                            showZscoreCalc();
+                            showProbs();
+                        } else {
+                            glid_sig.setGliderPosition(glid_mu.X() + 0.2);
+                            sigma = 0.2;
+                        }
+                    }
+                }
+
+
+
                 showMuSig = function () {
-                    //board.suspendUpdate();
-                    muOut.html("&mu; = mean = " + (glid_mu.X()).toFixed(4) +
-                        "    &sigma; = standard deviation = " + (Math.abs(glid_mu.X() - glid_sig
-                        .X())).toFixed(4));
-                    //sigmaOut.html("&sigma; = standard deviation = " + ( Math.abs(glid_mu.X() - glid_sig.X() ) ).toFixed(4));
-                    //board.unsuspendUpdate();
+
+                    muBox.val((glid_mu.X()).toFixed(4));
+                    sigmaBox.val(Math.abs(glid_mu.X() - glid_sig.X()).toFixed(4));
                 }
                 showMuSig();
+
+
+                //add listeners to mu_box and sig_box
+                muBox.change(function () {
+                    updateGlider("mu", parseFloat(muBox.val()));
+                });
+                sigmaBox.change(function () {
+                    updateGlider("sigma", parseFloat(sigmaBox.val()));
+                });
+
+
+
                 showZscoreCalc = function () {
                     //board.suspendUpdate();
                     $("#z1ScoreCalc").html("`z_1=(x_1 - mu)/sigma = (" + glid_x1.X().toFixed(2) + "-" +
